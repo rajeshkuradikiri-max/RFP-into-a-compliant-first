@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>RFP Response Assistant</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">AI RFP Response Assistant</p>
+      <h1>Turn an RFP into a compliant first-draft proposal.</h1>
+      <p class="subhead">Paste an RFP, add your reusable answer library, then generate a response matrix, risk notes, and proposal draft.</p>
+    </div>
+    <div class="header-card">
+      <span class="status-dot"></span>
+      <strong>Local MVP</strong>
+      <small>No data leaves your browser.</small>
+    </div>
+  </header>
+
+  <main class="layout">
+    <section class="panel input-panel">
+      <div class="panel-title">
+        <h2>1. RFP intake</h2>
+        <button id="loadSample" class="ghost">Load sample</button>
+      </div>
+      <label for="rfpText">RFP text</label>
+      <textarea id="rfpText" placeholder="Paste the RFP, statement of work, questionnaire, or procurement requirements here..."></textarea>
+
+      <div class="grid two">
+        <div>
+          <label for="companyName">Company name</label>
+          <input id="companyName" value="Acme Solutions" />
+        </div>
+        <div>
+          <label for="productName">Product / service</label>
+          <input id="productName" value="Acme Response Platform" />
+        </div>
+      </div>
+
+      <label for="answerLibrary">Reusable answer library</label>
+      <textarea id="answerLibrary" class="small" placeholder="Paste past proposal answers, product facts, security statements, case studies, pricing notes, etc."></textarea>
+
+      <button id="analyzeBtn" class="primary">Analyze & generate draft</button>
+    </section>
+
+    <section class="panel results-panel">
+      <div class="panel-title">
+        <h2>2. Opportunity brief</h2>
+        <button id="exportBtn" class="ghost" disabled>Export Markdown</button>
+      </div>
+      <div id="scorecards" class="scorecards"></div>
+      <div id="summary" class="empty">Run analysis to see fit score, deadlines, requirements, risks, and win themes.</div>
+    </section>
+
+    <section class="panel full-width">
+      <div class="panel-title">
+        <h2>3. Compliance matrix</h2>
+        <button id="copyMatrix" class="ghost" disabled>Copy matrix</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Requirement</th>
+              <th>Category</th>
+              <th>Matched evidence</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody id="matrixBody">
+            <tr><td colspan="5" class="empty-cell">No analysis yet.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel full-width">
+      <div class="panel-title">
+        <h2>4. Proposal draft</h2>
+        <div class="actions">
+          <button id="copyDraft" class="ghost" disabled>Copy draft</button>
+          <button id="clearBtn" class="ghost danger">Clear</button>
+        </div>
+      </div>
+      <textarea id="draftOutput" class="draft" placeholder="Generated response draft will appear here..."></textarea>
+    </section>
+  </main>
+
+  <footer>
+    <p>MVP note: this version uses local extraction and matching heuristics. Add an LLM API later for stronger drafting, citations, redlining, and answer-library retrieval.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
